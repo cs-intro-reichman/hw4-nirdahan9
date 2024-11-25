@@ -24,7 +24,7 @@ public class KeywordsDetector {
         // Replace this comment with your code
         for(int i = 0 ; i < sentences.length ; i ++) {
             for(int k = 0 ; k < keywords.length ; k ++) {
-                if(sentences[i].indexOf(keywords[k]) != -1) System.out.println(sentences[i]);
+                if(sentences[i].toLowerCase().indexOf(keywords[k].toLowerCase()) != -1) System.out.println(sentences[i]);
             }
         }
     }
