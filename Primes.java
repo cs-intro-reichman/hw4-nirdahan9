@@ -3,11 +3,13 @@ public class Primes {
         int primeCounter = 0;
         System.out.println("Prime numbers up to " + args[0] + ":");
         for(int i = 2 ; i <= Integer.parseInt(args[0]) ; i ++) {
-            if(isPrime(i)) System.out.println(i);
-            primeCounter ++;
+            if(isPrime(i)) {
+                System.out.println(i);
+                primeCounter ++;
+            }
         }
-        int primeCounterPrecent = primeCounter/Integer.parseInt(args[0]);
-        System.out.println("There are "+primeCounter+" numbers between 2 and "+args[0]+" ("+primeCounterPrecent+"% are primes)");
+        int primeCounterPrecent =(int) (100*primeCounter/Integer.parseInt(args[0]));
+        System.out.println("There are "+primeCounter+" primes between 2 and "+args[0]+" ("+primeCounterPrecent+"% are primes)");
     }
 
     public static boolean isPrime(int num) {
