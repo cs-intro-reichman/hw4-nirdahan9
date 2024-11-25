@@ -1,5 +1,14 @@
 public class Primes {
     public static void main(String[] args) {
-        // Replace this statement with your code
+        for(int i = 2 ; i < Integer.parseInt(args[0]) ; i ++) {
+            if(isPrime(i)) System.out.println(i);
+        }
+    }
+
+    public static boolean isPrime(int num) {
+        for(int i = 2 ; i < num ; i ++) {
+            if(num % i ==0) return false;
+        }
+        return true;
     }
 }
