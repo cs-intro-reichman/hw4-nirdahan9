@@ -141,21 +141,22 @@ public class ArrCharOps {
      *         return -2 if there is an error with the input.
      */
     public static int compareTo(String str1, String str2) {
-        boolean isLowerCaseChar , isUpperCaseChar , isSpace , isNotEmpty;
+        boolean isLowerCaseChar , isUpperCaseChar , isSpace;
+        if(str1.equals("")||str2.equals("")) return -2;
         for(int i = 0 ; i < str1 . length() ; i ++) {
-            isUpperCaseChar = (str1.charAt(i) >= 65) || (str1.charAt(i) <= 90);
-            isLowerCaseChar = (str1.charAt(i) >= 97) || (str1.charAt(i) <= 122);
-            isSpace = str1.charAt(i) == ' ';
-            isNotEmpty = str1.length() != 0;
-            if(!(isLowerCaseChar && isUpperCaseChar && isNotEmpty)||isSpace) return -2;
+            isUpperCaseChar = (str1.charAt(i) >= 65) && (str1.charAt(i) <= 90);
+            isLowerCaseChar = (str1.charAt(i) >= 97) && (str1.charAt(i) <= 122);
+            isSpace = (str1.charAt(i) == ' ');
+            if((isLowerCaseChar == false) && (isUpperCaseChar == false) && (isSpace == false)) 
+                return -2;
            //Checking any errors in str1
         }
         for(int i = 0 ; i < str2 . length() ; i ++) {
-            isUpperCaseChar = (str2.charAt(i) >= 65) || (str2.charAt(i) <= 90);
-            isLowerCaseChar = (str2.charAt(i) >= 97) || (str2.charAt(i) <= 122);
+            isUpperCaseChar = (str2.charAt(i) >= 65) && (str2.charAt(i) <= 90);
+            isLowerCaseChar = (str2.charAt(i) >= 97) && (str2.charAt(i) <= 122);
             isSpace = str2.charAt(i) == ' ';
-            isNotEmpty = str1.length() != 0;
-            if(!(isLowerCaseChar && isUpperCaseChar && isNotEmpty)||isSpace) return -2;
+            if((isLowerCaseChar == false) && (isUpperCaseChar == false) && (isSpace == false)) 
+                return -2;
             //Checking any errors in str1
          }
         int index = 0;
