@@ -141,19 +141,53 @@ public class ArrCharOps {
      *         return -2 if there is an error with the input.
      */
     public static int compareTo(String str1, String str2) {
-        // Replace the following statement with your code
-        if(str1.equals("")||str2.equals("")) return -2;
+        boolean isLowerCaseChar , isUpperCaseChar , isSpace , isNotEmpty;
+        for(int i = 0 ; i < str1 . length() ; i ++) {
+            isUpperCaseChar = (str1.charAt(i) >= 65) || (str1.charAt(i) <= 90);
+            isLowerCaseChar = (str1.charAt(i) >= 97) || (str1.charAt(i) <= 122);
+            isSpace = str1.charAt(i) == ' ';
+            isNotEmpty = str1.length() != 0;
+            if(!(isLowerCaseChar && isUpperCaseChar && isNotEmpty)||isSpace) return -2;
+           //Checking any errors in str1
+        }
+        for(int i = 0 ; i < str2 . length() ; i ++) {
+            isUpperCaseChar = (str2.charAt(i) >= 65) || (str2.charAt(i) <= 90);
+            isLowerCaseChar = (str2.charAt(i) >= 97) || (str2.charAt(i) <= 122);
+            isSpace = str2.charAt(i) == ' ';
+            isNotEmpty = str1.length() != 0;
+            if(!(isLowerCaseChar && isUpperCaseChar && isNotEmpty)||isSpace) return -2;
+            //Checking any errors in str1
+         }
         int index = 0;
         while(index < Math.min(str1.length() , str2.length()) && str1.charAt(index) == str2.charAt(index)) index++;
         // Going through all the equal chars
         if(str1.length() == str2.length()) {
             if(index==str1.length()) return 0; // Equal strings
-            else {
-                if(str1.charAt(index)>str2.charAt(index)) return 1;
+            else return compareChar(str1.charAt(index), str2.charAt(index)); // Checking the different char
+        }
+        if(str1.length()>str2.length()) return 1; // There are more chars in str1
+        return -1; // "Else" - there are more chars in str2
+    }
+
+    public static int compareChar(char ch1 , char ch2) {
+        if(ch1 == ch2) return 0;
+        boolean isUpper1 = (ch1 >= 65 && ch1 <= 90);
+        boolean isUpper2 = (ch2 >= 65 && ch2 <= 90); // Checking upper/lower case ahead of converting them in order to cpmpare
+        if((isUpper1 && isUpper2)||(!isUpper1 && !isUpper2)) {
+            if(ch1 > ch2) return 1;
+            else return -1;
+        }
+        else {
+            if(isUpper1 && !isUpper2) {
+                ch1 += 32; // Converting ch1 to lowercase
+                if(ch1 >= ch2) return 1;
                 else return -1;
             }
-        } 
-        if(str1.length()>str2.length()) return 1;
-        return -1; // "Else"
+            else {
+                ch2 += 32; // Converting ch2 to lowercase
+                if(ch1 >= ch2) return 1;
+                else return -1;
+            }
+        }  
     }
 }
