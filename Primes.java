@@ -1,15 +1,27 @@
 public class Primes {
     public static void main(String[] args) {
         int primeCounter = 0;
-        System.out.println("Prime numbers up to " + args[0] + ":");
-        for(int i = 2 ; i <= Integer.parseInt(args[0]) ; i ++) {
+        int num = Integer.parseInt(args[0]);
+        System.out.println("Prime numbers up to " + num + ":");
+        boolean [] arr = new boolean[num+1];
+        arr[0] = false; 
+        arr[1] = false;
+        for(int i = 2 ; i < arr.length ; i ++) arr[i] = true;
+        for(int i = 2 ; i < arr.length ; i ++) {
             if(isPrime(i)) {
-                System.out.println(i);
-                primeCounter ++;
+                for(int k = i + 1 ; k < arr.length ; k ++) {
+                    if(k % i == 0) arr[k] = false;
+                }
             }
         }
-        int primeCounterPrecent =(int) (100*primeCounter/Integer.parseInt(args[0]));
-        System.out.println("There are "+primeCounter+" primes between 2 and "+args[0]+" ("+primeCounterPrecent+"% are primes)");
+        for(int i = 2 ; i < arr.length ; i ++) {
+            if(arr[i]) {
+                primeCounter++;
+                System.out.println(i);
+            }
+        }
+        int primeCounterPrecent =(int) (100*primeCounter/num);
+        System.out.println("There are "+primeCounter+" primes between 2 and "+num+" ("+primeCounterPrecent+"% are primes)");
     }
 
     public static boolean isPrime(int num) {
@@ -18,4 +30,6 @@ public class Primes {
         }
         return true;
     }
+
+    
 }
